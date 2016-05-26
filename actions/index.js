@@ -56,3 +56,40 @@ export const getArticles = (curPage)=>{
             })
     }
 }
+//message
+export const SET_MESSAGE = 'SET_MESSAGE';
+export const setMessage = (messages)=>{
+    return {
+        type:SET_MESSAGE,
+        messages
+    }
+}
+export const getMessage = ()=>{
+    return (dispatch,getState)=>{
+        reqwest({
+            url:'http://localhost:1337/message/list',
+            method:'get',
+            type:'jsonp',
+            success:function (data) {
+                console.log(data);
+                dispatch(setMessage(data));
+            }
+        })
+    }
+}
+export const sendMessage = (message)=>{
+    return (dispatch,getState)=>{
+        reqwest({
+            url:'http://localhost:1337/message/add',
+            method:'get',
+            type:'jsonp',
+            data:message,
+            success:function (data) {
+                console.log('send message success');
+            },
+            error:function () {
+                console.log('send message error');
+            }
+        })
+    }
+}
