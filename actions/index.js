@@ -71,8 +71,7 @@ export const getMessage = ()=>{
             method:'get',
             type:'jsonp',
             success:function (data) {
-                console.log(data);
-                dispatch(setMessage(data));
+                dispatch(setMessage(data.data));
             }
         })
     }
@@ -86,9 +85,27 @@ export const sendMessage = (message)=>{
             data:message,
             success:function (data) {
                 console.log('send message success');
+                dispatch(getMessage());
             },
             error:function () {
                 console.log('send message error');
+            }
+        })
+    }
+}
+export const sendReply = (reply)=>{
+    return (dispatch,getState)=>{
+        reqwest({
+            url:'http://localhost:1337/reply/add',
+            method:'get',
+            type:'jsonp',
+            data:reply,
+            success:function (data) {
+                console.log('send reply success');
+                dispatch(getMessage());
+            },
+            error:function (data) {
+                console.log('send reply error');
             }
         })
     }
