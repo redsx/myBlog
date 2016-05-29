@@ -1,15 +1,15 @@
 import reqwest from 'reqwest'
 //pagination
-export const LIMIT = 2;
+export const LIMIT = 5;
 export const SET_MAX_PAGE = 'SET_MAX_PAGE';
 export const SET_CUR_PAGE = 'SET_CUR_PAGE';
-export const setMaxPage = (maxPage)=>{
+export const setMaxPage = (maxPage) => {
     return {
         type:SET_MAX_PAGE,
         maxPage
     }
 };
-export const getMaxPage = ()=>{
+export const getMaxPage = () => {
     return (dispatch,getState)=>{
         reqwest({
             url:'http://localhost:1337/countArticle',
@@ -25,24 +25,24 @@ export const getMaxPage = ()=>{
         });
     }
 }
-export const setCurPage = (curPage)=>{
+export const setCurPage = (curPage) => {
     return {
         type:SET_CUR_PAGE,
         curPage
     }
 }
-//articles
-export const SET_ARTICLES = 'SET_ARTICLES';
-export const setArticles = (articles)=>{
+//articleList
+export const SET_ARTICLE_LIST = 'SET_ARTICLE_LIST';
+export const setArticleList = (articles)=>{
     return {
-        type:SET_ARTICLES,
+        type:SET_ARTICLE_LIST,
         articles
     }
 }
-export const getArticles = (curPage)=>{
+export const getArticles = (curPage) => {
     return (dispatch,getState)=>{
         reqwest({
-                url:'http://localhost:1337/list',
+                url:'http://localhost:1337/article/list',
                 method:'get',
                 type:'jsonp',
                 data:{
@@ -50,10 +50,10 @@ export const getArticles = (curPage)=>{
                     page:curPage
                 },
                 success:function (data) {
-                    dispatch(setArticles(data));
+                    dispatch(setArticleList(data.articleList));
                     dispatch(setCurPage(curPage));
                 }
-            })
+            });
     }
 }
 //message
@@ -64,19 +64,20 @@ export const setMessage = (messages)=>{
         messages
     }
 }
-export const getMessage = ()=>{
+export const getMessage = () => {
     return (dispatch,getState)=>{
         reqwest({
             url:'http://localhost:1337/message/list',
             method:'get',
             type:'jsonp',
             success:function (data) {
+                console.log('getmessage');
                 dispatch(setMessage(data.data));
             }
-        })
+        });
     }
 }
-export const sendMessage = (message)=>{
+export const sendMessage = (message) => {
     return (dispatch,getState)=>{
         reqwest({
             url:'http://localhost:1337/message/add',
@@ -90,10 +91,10 @@ export const sendMessage = (message)=>{
             error:function () {
                 console.log('send message error');
             }
-        })
+        });
     }
 }
-export const sendReply = (reply)=>{
+export const sendReply = (reply) => {
     return (dispatch,getState)=>{
         reqwest({
             url:'http://localhost:1337/reply/add',
@@ -107,6 +108,114 @@ export const sendReply = (reply)=>{
             error:function (data) {
                 console.log('send reply error');
             }
-        })
+        });
+    }
+}
+//article
+export const SET_ARTICLE = 'SET_ARTICLE';
+export const setArticle = (article) => {
+    return {
+        type:SET_ARTICLE,
+        article
+    }
+}
+export const getArticle = (title) => {
+    return (dispatch) => {
+        reqwest({
+            url:'http://localhost:1337/getArticle',
+            method:'get',
+            type:'jsonp',
+            data:{ title },
+            success:function (data) {
+                if(data.article){
+                    dispatch(setArticle(data.article));
+                    dispatch(getComment());
+                }
+            },
+            error:function (error) {
+                console.log(error);
+            }
+        });
+    }
+}
+//comment
+export const SET_COMMENT = 'SET_COMMENT';
+export const setComment = (comment) => {
+    return {
+        type:SET_COMMENT,
+        comment
+    }
+}
+export const getComment = () => {
+    return (dispatch,getState) => {
+        var state = getState();
+        if(state.article.id){
+            reqwest({
+                url:'http://localhost:1337/getComment',
+                method:'get',
+                type:'jsonp',
+                data:{id:state.article.id},
+                success:function (data) {
+                    dispatch(setComment(data.comment));
+                },
+                error:function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    }
+}
+export const sendComment = (comment) => {
+    return (dispatch,getState)=>{
+        reqwest({
+            url:'http://localhost:1337/comment/add',
+            method:'get',
+            type:'jsonp',
+            data:comment,
+            success:function (data) {
+                console.log('send message success');
+                dispatch(getComment());
+            },
+            error:function () {
+                console.log('send message error');
+            }
+        });
+    }
+}
+export const sendReplyToComment = (reply) => {
+    return (dispatch,getState)=>{
+        reqwest({
+            url:'http://localhost:1337/comment/reply',
+            method:'get',
+            type:'jsonp',
+            data:reply,
+            success:function (data) {
+                console.log('send comment reply success');
+                dispatch(getComment());
+            },
+            error:function (data) {
+                console.log('send reply error');
+            }
+        });
+    }
+}
+//category
+export const SET_CATEGORY = 'SET_CATEGORY';
+export const setCategory = (category) => {
+    return {
+        type:SET_CATEGORY,
+        category
+    }
+}
+export const getCategory = () => {
+    return (dispatch) => {
+        reqwest({
+            url:'http://localhost:1337/newArticleList',
+            method:'get',
+            type:'jsonp',
+            success:function (data) {
+                dispatch(setCategory(data.newArticleList));
+            }
+        });
     }
 }
