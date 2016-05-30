@@ -10,12 +10,16 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 html {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: #f5f6f9;
 }
 
 body, h1, h2, h3, h4, h5, h6 {
