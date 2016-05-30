@@ -1,6 +1,6 @@
 import reqwest from 'reqwest'
 //pagination
-export const LIMIT = 5;
+export const LIMIT = 4;
 export const SET_MAX_PAGE = 'SET_MAX_PAGE';
 export const SET_CUR_PAGE = 'SET_CUR_PAGE';
 export const setMaxPage = (maxPage) => {
@@ -9,12 +9,15 @@ export const setMaxPage = (maxPage) => {
         maxPage
     }
 };
-export const getMaxPage = () => {
+export const getMaxPage = (category = '') => {
     return (dispatch,getState)=>{
         reqwest({
             url:'http://localhost:1337/countArticle',
             method:'get',
             type:'jsonp',
+            data: {
+                category:category
+            },
             success:function (data) {
                 let maxPage =Math.ceil(parseInt(data.count)/LIMIT);
                 dispatch(setMaxPage(maxPage));
@@ -39,7 +42,7 @@ export const setArticleList = (articles)=>{
         articles
     }
 }
-export const getArticles = (curPage) => {
+export const getArticles = (curPage,category = '') => {
     return (dispatch,getState)=>{
         reqwest({
                 url:'http://localhost:1337/article/list',
@@ -47,7 +50,8 @@ export const getArticles = (curPage) => {
                 type:'jsonp',
                 data:{
                     limit:LIMIT,
-                    page:curPage
+                    page:curPage,
+                    category:category
                 },
                 success:function (data) {
                     dispatch(setArticleList(data.articleList));
@@ -66,12 +70,16 @@ export const setMessage = (messages)=>{
 }
 export const getMessage = () => {
     return (dispatch,getState)=>{
+        var state = getState();
         reqwest({
             url:'http://localhost:1337/message/list',
             method:'get',
             type:'jsonp',
+            data:{
+                page:Math.ceil(state.messages.length/LIMIT),
+                limit:LIMIT
+            },
             success:function (data) {
-                console.log('getmessage');
                 dispatch(setMessage(data.data));
             }
         });
