@@ -1,6 +1,6 @@
 import reqwest from 'reqwest'
 //pagination
-export const LIMIT = 4;
+export const LIMIT = 5;
 export const SET_MAX_PAGE = 'SET_MAX_PAGE';
 export const SET_CUR_PAGE = 'SET_CUR_PAGE';
 export const setMaxPage = (maxPage) => {
@@ -68,7 +68,7 @@ export const setMessage = (messages)=>{
         messages
     }
 }
-export const getMessage = () => {
+export const getMessage = (page = 1) => {
     return (dispatch,getState)=>{
         var state = getState();
         reqwest({
@@ -76,17 +76,18 @@ export const getMessage = () => {
             method:'get',
             type:'jsonp',
             data:{
-                page:Math.ceil(state.messages.length/LIMIT),
+                page:page,
                 limit:LIMIT
             },
             success:function (data) {
-                dispatch(setMessage(data.data));
+                dispatch(setMessage(data.messages));
             }
         });
     }
 }
 export const sendMessage = (message) => {
     return (dispatch,getState)=>{
+        var page = (getState()).messages.curPage;
         reqwest({
             url:'http://localhost:1337/message/add',
             method:'get',
@@ -94,7 +95,7 @@ export const sendMessage = (message) => {
             data:message,
             success:function (data) {
                 console.log('send message success');
-                dispatch(getMessage());
+                dispatch(getMessage(page));
             },
             error:function () {
                 console.log('send message error');
@@ -104,6 +105,7 @@ export const sendMessage = (message) => {
 }
 export const sendReply = (reply) => {
     return (dispatch,getState)=>{
+        var page = (getState()).messages.curPage;
         reqwest({
             url:'http://localhost:1337/reply/add',
             method:'get',
@@ -111,7 +113,7 @@ export const sendReply = (reply) => {
             data:reply,
             success:function (data) {
                 console.log('send reply success');
-                dispatch(getMessage());
+                dispatch(getMessage(page));
             },
             error:function (data) {
                 console.log('send reply error');
