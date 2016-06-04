@@ -15,7 +15,7 @@ react小项目，前端使用的material-ui＋react＋redux＋react-router
 
 曾今也疑惑过是要把所有数据都保存，还是只存当前状态，最终还是选择了后者，毕竟我不是做本地存储，而且保存所有无疑是增加自己的负担。
 
-当然如果要保存全部数据的话，推荐使用normalize来范式化state
+当然如果要保存全部数据的话，推荐使用normalizr来范式化state
 
 ## 遇到的坑
 
