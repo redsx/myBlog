@@ -28,7 +28,7 @@ react小项目，前端使用的material-ui＋react＋redux＋react-router
 不科学）
 
 ### 2、route和state
-在某篇文章上看到过，route和state存在不对称的问题，我当时想到的是，通过route的params来达到两者的一致，暂时就这样解决吧，作者
+在某篇文章上看到过，route和state存在不对称的问题，我当时想到的是，通过props的params来达到两者的一致，暂时就这样解决吧，作者
 也没有给出可行的方案
 
 ### 3、待更新...
