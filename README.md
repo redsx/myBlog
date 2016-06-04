@@ -1,23 +1,23 @@
-# 我的个人博客
-初学react的小项目，前端使用的material－ui＋react＋redux＋react－router
-# 目前只给出react代码
+## 我的个人博客
+初学react的小项目，前端使用的material-ui＋react＋redux＋react-router
+## 目前只给出react代码
 因为后台用的sails，然而写sails的时候，并没有意识到要用git所以等部署带服务器上的时候再说吧
-# 加载动画没有完成
+## 加载动画要不要？
 其实我也一直在纠结要不要加载中的动画，等考虑好了再更新
-# state设计
-    * pagination,分页
-    * articleList,文章列表
-    * messages,留言
-    * article,文章详情
-    * comment,评论
-    * category,分类，包括右侧最新文章以及左侧分类
-    * resState,响应状态，暂时还没决定要不要，用于保存后台数据响应状态
+## state设计
+* pagination,分页
+* articleList,文章列表
+* messages,留言
+* article,文章详情
+* comment,评论
+* category,分类，包括右侧最新文章以及左侧分类
+* resState,响应状态，暂时还没决定要不要，用于保存后台数据响应状态
 
 曾今也疑惑过是要把所有数据都保存，还是只存当前状态，最终还是选择了后者，毕竟我不是做本地存储，而且保存所有无疑是增加自己的负担。
 
 当然如果要保存全部数据的话，推荐使用normalize来范式化state
 
-# 遇到的坑
+## 遇到的坑
 
 ### 1、state
 关于state的设计是个大坑，可是如果只保存当前状态的话，就方便好多，以为一个窗口只需要展示一篇文章，或者文章列表，或者留言，
