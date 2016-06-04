@@ -1,5 +1,5 @@
 ## 我的个人博客
-初学react的小项目，前端使用的material-ui＋react＋redux＋react-router
+react小项目，前端使用的material-ui＋react＋redux＋react-router
 ## 目前只给出react代码
 因为后台用的sails，然而写sails的时候，并没有意识到要用git所以等部署带服务器上的时候再说吧
 ## 加载动画要不要？
