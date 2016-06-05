@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Paper from 'material-ui/Paper'
 import { GridList, GridTile } from 'material-ui/GridList'
+
 const styles = {
     paper:{
         margin:'20px 15px 10px 15px'
@@ -50,7 +51,7 @@ const styles = {
                     <GridTile
                         cols={col}
                     >
-                    {this.props.children}                        
+                    {this.props.children}
                     </GridTile>
                     <GridTile
                         col={3-col}

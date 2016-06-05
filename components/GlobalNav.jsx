@@ -109,7 +109,7 @@ const GlobalNav = React.createClass({
                     </Link>
                     <Subheader><h3>关于我</h3></Subheader>
                     <Divider />
-                    <a href='#'>
+                    <a href='https://github.com/redsx' target='_blank'>
                         <ListItem 
                             primaryText = 'github'
                         />
