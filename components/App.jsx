@@ -1,6 +1,7 @@
 import React from 'react'
 import GlobalNav from '../containers/GlobalNav.js'
 import RightMenu from '../containers/RightMenu.js'
+import Loading from './Loading.jsx'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Paper from 'material-ui/Paper'
@@ -15,10 +16,12 @@ const styles = {
      getInitialState:function () {
         if(window.innerWidth >980){
             return {
+                isLoading:true,
                 smallScreeen:false
             }
         }else{
             return {
+                isLoading:true,
                 smallScreeen:true
             }
         }
@@ -34,8 +37,8 @@ const styles = {
             }
         });
     },
-     render:function () {
-         var col = 2;
+    render:function () {
+        var col = 2;
         if(this.state.smallScreeen){
             col = 3
         }
