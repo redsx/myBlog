@@ -23,7 +23,7 @@ export const getMaxPage = (category = '') => {
                 dispatch(setMaxPage(maxPage));
             },
             error:function () {
-                
+                dispatch(setSnackbar('获取分页数据失败T_T'))
             }
         });
     }
@@ -53,7 +53,11 @@ export const getArticles = (curPage,category = '') => {
                     page:curPage,
                     category:category
                 },
+                error:function (error) {
+                    dispatch(setSnackbar('加载文章列表失败了T—T 刷新试试'));
+                },
                 success:function (data) {
+                    dispatch(setLoading(false));          
                     dispatch(setArticleList(data.articleList));
                     dispatch(setCurPage(curPage));
                 }
@@ -80,7 +84,11 @@ export const getMessage = (page = 1) => {
                 limit:LIMIT
             },
             success:function (data) {
+                dispatch(setLoading(false)); 
                 dispatch(setMessage(data.messages));
+            },
+            error:function (error) {
+                dispatch(setSnackbar('获取评论失败了T—T 查看一下网络状态'));
             }
         });
     }
@@ -94,11 +102,11 @@ export const sendMessage = (message) => {
             type:'jsonp',
             data:message,
             success:function (data) {
-                console.log('send message success');
+                dispatch(setSnackbar('留言成功^_^'));
                 dispatch(getMessage(page));
             },
             error:function () {
-                console.log('send message error');
+                dispatch(setSnackbar('评论失败了T—T 查看一下网络状态'));
             }
         });
     }
@@ -112,11 +120,11 @@ export const sendReply = (reply) => {
             type:'jsonp',
             data:reply,
             success:function (data) {
-                console.log('send reply success');
+                dispatch(setSnackbar('回复成功^_^'));
                 dispatch(getMessage(page));
             },
             error:function (data) {
-                console.log('send reply error');
+                dispatch(setSnackbar('回复失败了T—T 查看一下网络状态'));
             }
         });
     }
@@ -138,6 +146,7 @@ export const getArticle = (title) => {
             data:{ title },
             success:function (data) {
                 if(data.article){
+                    dispatch(setLoading(false)); 
                     dispatch(setArticle(data.article));
                     dispatch(getComment());
                 }
@@ -169,7 +178,7 @@ export const getComment = () => {
                     dispatch(setComment(data.comment));
                 },
                 error:function (error) {
-                    console.log(error);
+                    dispatch(setSnackbar('获取评论失败了T—T 查看一下网络状态'));
                 }
             });
         }
@@ -183,11 +192,11 @@ export const sendComment = (comment) => {
             type:'jsonp',
             data:comment,
             success:function (data) {
-                console.log('send message success');
+                dispatch(setSnackbar('留言成功^_^'));
                 dispatch(getComment());
             },
             error:function () {
-                console.log('send message error');
+                dispatch(setSnackbar('评论失败了T—T 查看一下网络状态'));
             }
         });
     }
@@ -200,11 +209,11 @@ export const sendReplyToComment = (reply) => {
             type:'jsonp',
             data:reply,
             success:function (data) {
-                console.log('send comment reply success');
+                dispatch(setSnackbar('回复成功^_^'));
                 dispatch(getComment());
             },
             error:function (data) {
-                console.log('send reply error');
+                dispatch(setSnackbar('回复失败了T—T 查看一下网络状态'));
             }
         });
     }
@@ -227,5 +236,20 @@ export const getCategory = () => {
                 dispatch(setCategory(data.newArticleList));
             }
         });
+    }
+}
+//loading
+export const SET_LOADING = 'SET_LOADING';
+export const setLoading = (isLoading) => {
+    return {
+        type:SET_LOADING,
+        isLoading
+    }
+}
+export const SET_SNACKBAR = 'SET_SNACKBAR';
+export const setSnackbar = (message) => {
+    return {
+        type:SET_SNACKBAR,
+        message
     }
 }
