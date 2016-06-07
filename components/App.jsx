@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Paper from 'material-ui/Paper'
 import { GridList, GridTile } from 'material-ui/GridList'
+import ShowSnackbar from '../containers/ShowSnackbar.js'
 
 const styles = {
     paper:{
@@ -66,6 +67,7 @@ const styles = {
                     </Paper>
                     </GridTile>
                 </GridList>
+                <ShowSnackbar />
             </div>            
             </MuiThemeProvider>
          )
