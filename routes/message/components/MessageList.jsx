@@ -3,6 +3,7 @@ import { List } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 import MessageItem from '../containers/MessageItem.js'
 import Divider from 'material-ui/Divider'
+import Loading from '../../../components/Loading.jsx'
 const styles = {
     text:{
         textAlign:'center'
@@ -18,6 +19,7 @@ const MessageList = React.createClass({
         }
     },
     componentWillMount:function () {
+        this.props.setLoading(true);        
         this.props.getMessage(1);
     },
     
@@ -31,6 +33,9 @@ const MessageList = React.createClass({
         curPage = parseInt(curPage);
         maxPage = parseInt(maxPage);
         return (
+            this.props.isLoading?
+            <Loading />
+            :
             <List>
                 {
                     messageArr? 

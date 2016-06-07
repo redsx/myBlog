@@ -14,7 +14,9 @@ const ArticleCard = React.createClass({
     render:function () {
         var { time, title, introduce } = this.props.article
         return (
-            <Card style={styles.card}>
+            <Card 
+                style={styles.card}
+            >
                 <CardTitle 
                     title = {title}
                     subtitle = {time}
