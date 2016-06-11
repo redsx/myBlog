@@ -238,7 +238,7 @@ export const getCategory = () => {
         });
     }
 }
-//loading
+//resState
 export const SET_LOADING = 'SET_LOADING';
 export const setLoading = (isLoading) => {
     return {
