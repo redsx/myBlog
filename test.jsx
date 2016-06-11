@@ -1,7 +1,8 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router'
+import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
@@ -11,12 +12,11 @@ import Message from './routes/message/index.jsx'
 import Article from './routes/article/index.jsx'
 
 import store from './store'
-import { Router, Route, IndexRoute } from 'react-router'
 injectTapEventPlugin();
 render(
     <Provider store={store}>
     <div>
-        <Router>
+        <Router history = { hashHistory }>
             <Route path='/' component={App} >
                 <IndexRoute component={Home} />
                 <Route path='/page(/:category)/:page' component={Home} />
