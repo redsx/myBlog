@@ -5,11 +5,12 @@
 @import "github.css";
 
 a {
-  color: #ff4081;
+  color: #444;
   text-decoration: none;
 }
 
 a:hover {
+  color: #ff4081;
   text-decoration: none;
 }
 
