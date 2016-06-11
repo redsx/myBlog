@@ -45,10 +45,14 @@ const GlobalNav = React.createClass({
         return this.props.category.map((item) => {
             return (
                          <ListItem
-                             onClick = {()=>{this.handleToggle()}}
                              leftIcon = {<ActionGrade />}
                          >
-                             <Link to = {'/page/'+ item.category +'/1'} > {item.category} </Link>
+                             <Link 
+                                to = {'/page/'+ item.category +'/1'} 
+                                onClick = {()=>{this.handleToggle()}}
+                             > 
+                                {item.category} 
+                             </Link>
                          </ListItem>
                          
                 );
@@ -62,7 +66,7 @@ const GlobalNav = React.createClass({
                 onLeftIconButtonTouchTap = {()=>{this.handleToggle()}}
                 iconElementRight = {
                     <IconButton>
-                    <a href='#'>
+                    <a href='https://github.com/redsx' target='_blank'>
                         <FontIcon 
                             className = 'muidocs-icon-custom-github'
                             color = 'white'
