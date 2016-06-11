@@ -6,6 +6,9 @@ import ArrowNext from 'material-ui/svg-icons/navigation/chevron-right'
 const styles = {
     button:{
         minWidth:'2rem'
+    },
+    pagination:{
+        margin:'20px 10px'
     }
 }
 const Pagination = React.createClass({
@@ -50,7 +53,7 @@ const Pagination = React.createClass({
             }
         }
         return (
-            <div>
+            <div style={styles.pagination}>
                 {
                     curPage === 1? <FlatButton 
                                         icon = {<ArrowPre />}
