@@ -45,6 +45,7 @@ const GlobalNav = React.createClass({
         return this.props.category.map((item) => {
             return (
                          <ListItem
+                             key = {item.category}
                              leftIcon = {<ActionGrade />}
                          >
                              <Link 

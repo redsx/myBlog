@@ -45,26 +45,37 @@ const styles = {
              <MuiThemeProvider muiTheme={getMuiTheme()}>
              <div>
                 <GlobalNav />
-                <GridList
-                    cols={3}
-                    padding={1}
-                    cellHeight={'100%'}
+                <div
+                    style = {{
+                        width:'100%'
+                    }}
                 >
-                    <GridTile
-                        cols={col}
+                    <div
+                        style = {{
+                            width:33.33*col+'%',
+                            float:'left'
+                        }}
                     >
                     {this.props.children}
-                    </GridTile>
-                    <GridTile
-                        col={3-col}
+                    </div>
+                    <div
+                        style = {{
+                            width:33.33*(3-col)+'%',
+                            float:'left'
+                        }}
                     >
                     <Paper style = {styles.paper} >
                     {
                         this.state.smallScreeen? '':  <RightMenu />  
                     }
                     </Paper>
-                    </GridTile>
-                </GridList>
+                    </div>
+                    <div
+                        style = {{
+                            clear:'both'
+                        }}
+                    ></div>
+                </div>
                 <Bottom />
                 <ShowSnackbar />
             </div>            

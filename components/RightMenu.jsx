@@ -12,6 +12,13 @@ const StepMenu = React.createClass({
     },
     componentDidMount:function () {
        this.props.getCategory();
+       
+    },
+    componentDidUpdate:function () {
+        var stepContent = document.querySelectorAll('.stepContent>div');
+        for(var i=0;i<stepContent.length;i++){
+                stepContent[i].style.height = 'auto';
+        }
     },
     handleSetIndex:function (num) {
         this.setState({
@@ -20,17 +27,21 @@ const StepMenu = React.createClass({
     },
     genarateStep:function (key,titles,num) {
         return (
-                <Step>
+                <Step
+                    key = {num}
+                >
                     <StepButton
                         onClick = {()=>{this.handleSetIndex(num)}}
                     >
                     {key}
                     </StepButton>
-                    <StepContent>
+                    <StepContent
+                        className = 'stepContent'
+                    >
                         <List>
                         {
                             titles.map(function (title) {
-                                return <Link to = {'/article/'+title} ><ListItem>{title}</ListItem></Link>
+                                return <Link to = {'/article/'+title} ><ListItem key={title}>{title}</ListItem></Link>
                             })                                              
                         }
                         </List>
