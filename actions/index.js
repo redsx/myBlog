@@ -12,9 +12,9 @@ export const setMaxPage = (maxPage) => {
 export const getMaxPage = (category = '') => {
     return (dispatch,getState)=>{
         reqwest({
-            url:'http://localhost:1337/countArticle',
+            url:'/countArticle',
             method:'get',
-            type:'jsonp',
+            type:'json',
             data: {
                 category:category
             },
@@ -45,9 +45,9 @@ export const setArticleList = (articles)=>{
 export const getArticles = (curPage,category = '') => {
     return (dispatch,getState)=>{
         reqwest({
-                url:'http://localhost:1337/article/list',
+                url:'/article/list',
                 method:'get',
-                type:'jsonp',
+                type:'json',
                 data:{
                     limit:LIMIT,
                     page:curPage,
@@ -76,9 +76,9 @@ export const getMessage = (page = 1) => {
     return (dispatch,getState)=>{
         var state = getState();
         reqwest({
-            url:'http://localhost:1337/message/list',
+            url:'/message/list',
             method:'get',
-            type:'jsonp',
+            type:'json',
             data:{
                 page:page,
                 limit:LIMIT
@@ -97,9 +97,9 @@ export const sendMessage = (message) => {
     return (dispatch,getState)=>{
         var page = (getState()).messages.curPage;
         reqwest({
-            url:'http://localhost:1337/message/add',
+            url:'/message/add',
             method:'get',
-            type:'jsonp',
+            type:'json',
             data:message,
             success:function (data) {
                 dispatch(setSnackbar('留言成功^_^'));
@@ -115,9 +115,9 @@ export const sendReply = (reply) => {
     return (dispatch,getState)=>{
         var page = (getState()).messages.curPage;
         reqwest({
-            url:'http://localhost:1337/reply/add',
+            url:'/reply/add',
             method:'get',
-            type:'jsonp',
+            type:'json',
             data:reply,
             success:function (data) {
                 dispatch(setSnackbar('回复成功^_^'));
@@ -140,9 +140,9 @@ export const setArticle = (article) => {
 export const getArticle = (title) => {
     return (dispatch) => {
         reqwest({
-            url:'http://localhost:1337/getArticle',
+            url:'/getArticle',
             method:'get',
-            type:'jsonp',
+            type:'json',
             data:{ title },
             success:function (data) {
                 if(data.article){
@@ -170,9 +170,9 @@ export const getComment = () => {
         var state = getState();
         if(state.article.id){
             reqwest({
-                url:'http://localhost:1337/getComment',
+                url:'/getComment',
                 method:'get',
-                type:'jsonp',
+                type:'json',
                 data:{id:state.article.id},
                 success:function (data) {
                     dispatch(setComment(data.comment));
@@ -187,9 +187,9 @@ export const getComment = () => {
 export const sendComment = (comment) => {
     return (dispatch,getState)=>{
         reqwest({
-            url:'http://localhost:1337/comment/add',
+            url:'/comment/add',
             method:'get',
-            type:'jsonp',
+            type:'json',
             data:comment,
             success:function (data) {
                 dispatch(setSnackbar('留言成功^_^'));
@@ -204,9 +204,9 @@ export const sendComment = (comment) => {
 export const sendReplyToComment = (reply) => {
     return (dispatch,getState)=>{
         reqwest({
-            url:'http://localhost:1337/comment/reply',
+            url:'/comment/reply',
             method:'get',
-            type:'jsonp',
+            type:'json',
             data:reply,
             success:function (data) {
                 dispatch(setSnackbar('回复成功^_^'));
@@ -229,9 +229,9 @@ export const setCategory = (category) => {
 export const getCategory = () => {
     return (dispatch) => {
         reqwest({
-            url:'http://localhost:1337/newArticleList',
+            url:'/newArticleList',
             method:'get',
-            type:'jsonp',
+            type:'json',
             success:function (data) {
                 dispatch(setCategory(data.newArticleList));
             }
