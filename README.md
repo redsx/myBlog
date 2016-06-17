@@ -2,6 +2,8 @@
 
 An example react application with react-route, redux, react-redux, and material
 
+[myblog:http://blog.mdzzapp.com](http://blog.mdzzapp.com)
+
 #### Under the hood
 
 - [React](https://github.com/facebook/react) 
