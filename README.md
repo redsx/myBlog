@@ -12,10 +12,6 @@ An example react application with react-route, redux, react-redux, and material
 - [Babel 6](https://github.com/babel/babel) 
 - [Webpack](https://github.com/webpack/webpack) with vanilla Hot Module Replacement
 
-#### Inspiration
-
-* [ZS Blog](http://ziorix.com)
-
 #### state design
 
 - pagination
