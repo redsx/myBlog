@@ -7,10 +7,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import App from './components/App.jsx'
-import Home from './routes/home/index.jsx'
-import Message from './routes/message/index.jsx'
-import Article from './routes/article/index.jsx'
-
+// import Home from './routes/home/index.jsx'
+// import Message from './routes/message/index.jsx'
+// import Article from './routes/article/index.jsx'
 import store from './store'
 injectTapEventPlugin();
 render(
@@ -18,10 +17,34 @@ render(
     <div>
         <Router history = { hashHistory }>
             <Route path='/' component={App} >
-                <IndexRoute component={Home} />
-                <Route path='/page(/:category)/:page' component={Home} />
-                <Route path='/message' component={Message} />
-                <Route path='/article/:article' component={Article} />
+                <IndexRoute getComponent={
+                    (nextState ,cb) => {
+                        require.ensure([] , (require) => {
+                            cb(null,require('./routes/home/index.jsx'));
+                        },'home');
+                    }
+                } />
+                <Route path='/page(/:category)/:page' getComponent={
+                    (nextState ,cb) => {
+                        require.ensure([] , (require) => {
+                            cb(null,require('./routes/home/index.jsx'));
+                        },'home');
+                    }
+                } />
+                <Route path='/message' getComponent={
+                    (nextState ,cb) => {
+                        require.ensure([] , (require) => {
+                            cb(null,require('./routes/message/index.jsx'));
+                        },'message');
+                    }
+                } />
+                <Route path='/article/:article' getComponent={
+                    (nextState ,cb) => {
+                        require.ensure([] , (require) => {
+                            cb(null,require('./routes/article/index.jsx'));
+                        },'article');
+                    }
+                } />
             </Route>
         </Router>
     </div>
