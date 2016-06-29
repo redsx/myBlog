@@ -34,6 +34,7 @@ const Pagination = React.createClass({
             if( curPage === i ){
                 cont.push(
                         <FlatButton 
+                            key = {i}
                             disabled = {true}
                             style = {styles.button}
                         > 
@@ -44,6 +45,7 @@ const Pagination = React.createClass({
                 cont.push(
                        <Link to = {route + i }> 
                        <FlatButton
+                            key = {i}
                             style = {styles.button}
                        > 
                        {i} 

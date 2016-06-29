@@ -30,4 +30,5 @@ const Message = React.createClass({
         );
     }
 });
-export default Message;
+module.exports = Message;
+// export default Message;

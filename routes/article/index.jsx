@@ -3,6 +3,7 @@ import Article from './containers/Article.js'
 import Comment from './components/Comment.jsx'
 const ArticlePage = React.createClass({
     render:function () {
+        console.log('render article')
         return (
             <div>
                 <Article articleTitle = {this.props.params.article} />
@@ -11,4 +12,5 @@ const ArticlePage = React.createClass({
         );
     }
 });
-export default ArticlePage;
+module.exports = ArticlePage;
+// export default ArticlePage;

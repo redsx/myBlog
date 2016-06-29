@@ -28,6 +28,7 @@ const ArticleList = React.createClass({
                         articles.map(function (item) {
                             return (
                                 <ArticleCard 
+                                    key = {item.title}
                                     article={item}
                                 />
                             );
