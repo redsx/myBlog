@@ -1,4 +1,4 @@
-# A Simple React Application
+# A Simple {yet interesting} React Application
 
 An example react application with react-route, redux, react-redux, and material
 
@@ -22,7 +22,7 @@ An example react application with react-route, redux, react-redux, and material
 - category
 - resState
 
-#### How to install
+#### How to install...ITS PRETTY SIMPLE!!!
 
 1. git clone this project
 2. cd into the folder
